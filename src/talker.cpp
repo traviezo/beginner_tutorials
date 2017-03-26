@@ -52,7 +52,7 @@ int main(int argc, char **argv)
    * A count of how many messages we have sent. This is used to create
    * a unique string for each message.
    */
-  int count = 0;
+  int year = 2017;
   while (ros::ok())
   {
     /**
@@ -61,7 +61,7 @@ int main(int argc, char **argv)
     std_msgs::String msg;
 
     std::stringstream ss;
-    ss << "hello world " << count;
+    ss << "Welcome Class ENPM808X of " << year;
     msg.data = ss.str();
 
     ROS_INFO("%s", msg.data.c_str());
@@ -77,7 +77,7 @@ int main(int argc, char **argv)
     ros::spinOnce();
 
     loop_rate.sleep();
-    ++count;
+    ++year;
   }
 
 
