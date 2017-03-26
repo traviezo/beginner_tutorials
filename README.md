@@ -6,21 +6,25 @@ The ROS package beginner_tutorials serves as a tutorial that shows how to write 
 
 ## How to build and run beginner_tutorials
 In order to build the beginner_tutorials ROS package do the following:
+
 1. Move to directory containing your catking workspace:
-   cd ~/catkin_ws <enter>
+   cd ~/catkin_ws 
 2. Once inside catkin_ws build all packages inside workspace:
-   catkin_make <enter>
-After Build has completed successfully you can run the nodes as follows:
-1. Open a terminal session by typing:
-   ctrl + alt + T <enter>
+   catkin_make 
+
+   After Build has completed successfully you can run the nodes as follows:
+
+1. Open a terminal session by typing: 
+   ctrl + alt + T 
 2. Start Roscore by typing:
-   roscore <enter>
+   roscore 
 3. Open a second terminal session by typing:
-   ctrl + alt + T <enter>
+   ctrl + alt + T 
 4. Run the talker node by typing:
-   rosrun beginner_tutorials talker <enter>
+   rosrun beginner_tutorials talker 
 5. Open a thrid terminal session by typing:
-   ctrl + alt + T <enter>
+   ctrl + alt + T 
 6. Run the listener node by typing:
-   rosrun beginner_tutorials listener <enter>
-Once both nodes are running you will be able to see the published messages in the second console screen as well as the received message in the third terminal.
+   rosrun beginner_tutorials listener 
+
+   Once both nodes are running you will be able to see the published messages in the second console screen as well as the received message in the third terminal.
