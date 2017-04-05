@@ -206,3 +206,13 @@ add_dependencies(talker beginner_tutorials_generate_messages_cpp)
 add_executable(listener src/listener.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})
 add_dependencies(listener beginner_tutorials_generate_messages_cpp)
+
+## Declare a Server Service executable
+add_executable(chgString_server_node src/change_string_server.cpp)
+target_link_libraries(chgString_server_node ${catkin_LIBRARIES})
+add_dependencies(chgString_server_node beginner_tutorials_gencpp)
+
+## Declare a Client Service executable
+add_executable(chgString_client_node src/change_string_client.cpp)
+target_link_libraries(chgString_client_node ${catkin_LIBRARIES})
+add_dependencies(chgString_client_node beginner_tutorials_gencpp)

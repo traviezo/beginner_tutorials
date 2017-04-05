@@ -1,0 +1,38 @@
+<launch>
+	
+        <param name="frequency" value="10"/>
+	
+	<node 
+           pkg="beginner_tutorials"
+           type="talker" 
+	   name="talker"
+           output="screen" 
+           launch-prefix="xterm -e">
+	</node>
+
+	<node
+	   pkg="beginner_tutorials"
+	   type="listener"
+	   name="listener"
+	   output="screen"
+	   launch-prefix="xterm -e"
+	/>
+
+	<node 
+           pkg="beginner_tutorials"
+           type="chgString_client_node" 
+           name="chgString_client_node"
+           output="screen" 
+           launch-prefix="xterm -e">
+	</node>
+
+	<node
+	   pkg="beginner_tutorials"
+	   type="chgString_server_node"
+	   name="chgString_server_node"
+	   output="screen"
+	   launch-prefix="xterm -e"
+	/>
+
+
+</launch>
