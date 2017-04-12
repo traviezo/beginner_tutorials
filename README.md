@@ -38,3 +38,23 @@ As usual in order to build all nodes type catkin_make inside the catkin workspac
 After all nodes are built without errors, the run the roslaunch file as follows:
 roslaunch beginner_tutorials beginner_tutorials.launch 
 
+## How to inspect TF frames
+In order to inspect tf frames you first need to run the node as follows: rosrun beginner_tutorials talker
+Then you can use the command tf_echo as follows:  rosrun tf tf_echo /world /talk
+You can also inspect the tf tree by making use of the rqt_tf_tree command:  rosrun rqt_tf_tree rqt_tf_tree
+
+## How to run rostest
+In order to run rostest you first need to build the tests as follows:  catkin_make tests
+This command will compile the rostests in your package and created the respective executables. Then you can run the test as follows: rosrun beginner_tutorials tfTest
+After running this node you shall see the tests results printed in the screen.
+
+## Recording a rosbag file
+In order to record topics in bag file you can do it either by running the rosbag file as a node as follows:
+rosbag record -O alltopics.bag -a
+Or you could mak it part of your ros launch file. Please see the tfTest launch file in the launch folder for further details on how to added to a lunch file.
+
+## How to play a rosbag file
+You need to type the ros command:
+rosbag play alltopics.bag 
+
+
