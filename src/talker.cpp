@@ -1,11 +1,12 @@
 /* Copyright 2017 Christian */
-
+#include <tf/transform_broadcaster.h>
 #include <sstream>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 
+
 /**
- * This tutorial demonstrates simple sending of messages over the ROS system.
+ * This tutorial has been modified to broadcast tf frames over the ROS system.
  */
 int main(int argc, char **argv) {
   /**
@@ -46,13 +47,23 @@ int main(int argc, char **argv) {
    */
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
 
+  /**
+   * loop_rate is an object that defines that frequency in Hz at which the while loop
+   * will work
+   */
   ros::Rate loop_rate(10);
+
+  /**
+   * tfBroadcaster is an object that will be used to broadcast the trasnform
+   */
+  tf::TransformBroadcaster tfBroadcaster;
 
   /**
    * A count of how many messages we have sent. This is used to create
    * a unique string for each message.
    */
   int year = 2017;
+
   while (ros::ok()) {
     /**
      * This is a message object. You stuff it with data, and then publish it.
@@ -73,10 +84,43 @@ int main(int argc, char **argv) {
      */
     chatter_pub.publish(msg);
 
+    /**
+     * The transform object will contain the rotation and translation parameters
+     */
+    tf::Transform transform;
+
+    /**
+     * Setting the world frame reference in the transform vector x = 0.2 ,y = 0, z = 0.3
+     */
+    transform.setOrigin(tf::Vector3(0.2, 0.0, 0.3));
+
+    /**
+     * Quaternion object used to define rotation
+     */
+    tf::Quaternion tfQuatrn;
+
+    /**
+     * Setting rotation to be only in the z plane (180 turn around Z axis)
+     */
+    tfQuatrn.setRPY(0, 0, 1);
+
+    /**
+     * Embedding translation and rotation data into transform object
+     */
+    transform.setRotation(tfQuatrn);
+
+    /**
+     * Broadcasting the transform using 4 parameters:
+     * transform contains translation and rotation matrix
+     * Time::now() contains the time stamp of the system
+     * world parent frame name
+     * talk child fram name
+     */
+    tfBroadcaster.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "talk"));
+
     ros::spinOnce();
 
     loop_rate.sleep();
-    ++year;
   }
 
 
