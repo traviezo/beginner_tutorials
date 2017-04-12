@@ -1,0 +1,14 @@
+<launch>	
+	<node 
+	   pkg="beginner_tutorials" 
+           type="talker" 
+           name="talker" 
+	/>
+
+        <test
+	   test-name="tfTest" 
+           pkg="beginner_tutorials" 
+           type="tfTest" 
+        />
+
+</launch>
