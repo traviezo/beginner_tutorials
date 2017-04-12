@@ -10,7 +10,9 @@ project(beginner_tutorials)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
+  tf
   std_msgs
+  geometry_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -197,6 +199,12 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+if(CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
+  add_rostest_gtest(tfTest launch/tfTest.launch test/My_tf_test.cpp)
+  target_link_libraries(tfTest ${catkin_LIBRARIES} ${GTEST_LIBRARIES})
+endif()
+
 
 ## Build talker and listener
 add_executable(talker src/talker.cpp)
